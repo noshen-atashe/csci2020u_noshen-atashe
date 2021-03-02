@@ -30,7 +30,7 @@ public class Main extends Application {
 
         //Create each column for the table
         TableColumn<StudentRecord, String> sidColumn = null;
-        sidColumn = new TableColumn<>("Student ID");
+        sidColumn = new TableColumn<>("SID");
         sidColumn.setMinWidth(100);
         sidColumn.setCellValueFactory(new PropertyValueFactory<>("StudentID"));
 
@@ -88,7 +88,7 @@ public class Main extends Application {
 
         ObservableList data = DataSource.getAllMarks();
 
-        Button button = new Button("Button");
+        Button button = new Button("Add");
         button.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
@@ -124,7 +124,7 @@ public class Main extends Application {
         layout.setCenter(table);
         layout.setBottom(grid);
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Lab 05");
         primaryStage.setScene(new Scene(layout, 600, 620));
         primaryStage.show();
 

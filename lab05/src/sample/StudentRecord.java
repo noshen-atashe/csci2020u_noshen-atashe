@@ -13,7 +13,7 @@ public class StudentRecord {
     private float FinalMark;
     private char LetterGrade;
 
-    StudentRecord(String StudentID, float Midterm, float Assignments, float FinalExam){
+    StudentRecord(String StudentID, float Assignments, float Midterm,  float FinalExam){
 
         this.StudentID = StudentID;
         this.Midterm = Midterm;
