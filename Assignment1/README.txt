@@ -11,6 +11,7 @@ Project Information:
 The purpose of this project is to detect spam or ham from a given set of data.
 It goes through a training and testing phase to detect words that indicate the
 state of a file as "spam" or "ham".
+UIsolution.png includes an example of the output.
 
 
 How to run:

@@ -6,13 +6,13 @@ import java.io.*;
 import java.util.*;
 
 
-public class Testing {
+public class Tester {
     public ObservableList<TestFile> testData = FXCollections.observableArrayList();
 
     //class constructor
-    public Testing(File[] listOfSpam, File[] listOfHam, HashMap<String, Double> wordMap) throws IOException{
-        CalculateProb(listOfSpam, wordMap);
-        CalculateProb(listOfHam, wordMap);
+    public Tester(File[] spamList, File[] hamList, HashMap<String, Double> wordHashMap) throws IOException{
+        CalculateProb(spamList, wordHashMap);
+        CalculateProb(hamList, wordHashMap);
     }
 
     //Calculate probability of spam or ham by scanning each word

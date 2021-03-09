@@ -39,38 +39,38 @@ public class Main extends Application {
         //Directory for ham
         File folderHam1 = new File(mainDirectory.getPath()+"/train/ham");
         File[] listOfFilesH1 = folderHam1.listFiles();
-        TrainFiles hamFreq1 = new TrainFiles(listOfFilesH1, false);
+        TrainFiles hamF = new TrainFiles(listOfFilesH1, false);
 
         File folderHam2 = new File(mainDirectory.getPath()+"/train/ham2");
         File[] listOfFilesH2 = folderHam2.listFiles();
-        TrainFiles hamFreq2 = new TrainFiles(listOfFilesH2, false);
+        TrainFiles hamF2 = new TrainFiles(listOfFilesH2, false);
 
         //Directory for spam
         File folderS = new File(mainDirectory.getPath()+"/train/spam");
         File[] listOfFilesS = folderS.listFiles();
-        TrainFiles spamFreq = new TrainFiles(listOfFilesS, true);
+        TrainFiles spamF = new TrainFiles(listOfFilesS, true);
 
         //Calculate Pr(S|Wi)
         HashMap<String,Double> probSpam = new HashMap<>();
         double probability;
         //determine probabilities for all spam words.
-        Iterator iterator = spamFreq.wordGivProb.entrySet().iterator();
+        Iterator iterator = spamF.wordGivProb.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry word = (Map.Entry)iterator.next();
-            // Pr = W|S / W|S + W|H (Key only exists in Ham1 file)
-            if (hamFreq1.globalCount.containsKey(word.getKey())){
-                probability = ((Double) word.getValue()) / (((Double)word.getValue()) + hamFreq1.wordGivProb.get(word.getKey()));
+            // Pr = W|S / W|S + W|H (Only exists in Ham1 file)
+            if (hamF.globalCount.containsKey(word.getKey())){
+                probability = ((Double) word.getValue()) / (((Double)word.getValue()) + hamF.wordGivProb.get(word.getKey()));
                 probSpam.put(word.getKey().toString(), probability);
             }
-            // Pr = W|S / W|S + W|H (Key only exists in Ham2 file)
-            else if (hamFreq2.globalCount.containsKey(word.getKey())) {
-                probability = ((Double) word.getValue()) / (((Double) word.getValue()) + hamFreq2.wordGivProb.get(word.getKey()));
+            // Pr = W|S / W|S + W|H (Only exists in Ham2 file)
+            else if (hamF2.globalCount.containsKey(word.getKey())) {
+                probability = ((Double) word.getValue()) / (((Double) word.getValue()) + hamF2.wordGivProb.get(word.getKey()));
                 probSpam.put(word.getKey().toString(), probability);
             }
-            //Pr = W|S / W|S + W|H (Key exists in both Ham files)
-            else if (hamFreq1.globalCount.containsKey(word.getKey()) && hamFreq2.globalCount.containsKey(word.getKey())){
+            //Pr = W|S / W|S + W|H (Exists in both Ham files)
+            else if (hamF.globalCount.containsKey(word.getKey()) && hamF2.globalCount.containsKey(word.getKey())){
                 probability = ((Double) word.getValue()) / (((Double) word.getValue())
-                        + (hamFreq1.wordGivProb.get(word.getKey()) + hamFreq2.wordGivProb.get(word.getKey())));
+                        + (hamF.wordGivProb.get(word.getKey()) + hamF2.wordGivProb.get(word.getKey())));
                 probSpam.put(word.getKey().toString(), probability);
             }
             //Pr = W|S / W|S + 0 (Key doesn't exist in either Ham files, therefore probability is 1)
@@ -84,7 +84,7 @@ public class Main extends Application {
         File[] testSpamFiles = spamFolder.listFiles();
         File hamFolder = new File(mainDirectory.getPath()+"/test/ham");
         File[] testHamFiles = hamFolder.listFiles();
-        Testing testMap = new Testing(testSpamFiles, testHamFiles, probSpam);
+        Tester testMap = new Tester(testSpamFiles, testHamFiles, probSpam);
         System.out.println("Results Loading...");
 
         //Set up table for Interface
