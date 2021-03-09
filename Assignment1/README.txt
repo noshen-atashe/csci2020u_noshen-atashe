@@ -12,5 +12,5 @@ How to run:
 Other Resources:
 
 
-Precision: 0.96921975566213314
-Accuracy: 0.9131212012870933
+Accuracy: 0.9131832797427653
+Precision: 0.9685264663805436
