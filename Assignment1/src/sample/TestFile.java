@@ -39,8 +39,7 @@ public class TestFile {
     }
     public String getActualClass() { return this.actualClass; }
     public void setFilename(String value) { this.filename = value; }
-//    public void setSpamProbability(double val) { this.spamProbability = val; }
-//    public void setActualClass(String value) { this.actualClass = value; }
+
 
     //Additional Getter and Setter methods
     public String getProbRounded() {return probRounded;}
