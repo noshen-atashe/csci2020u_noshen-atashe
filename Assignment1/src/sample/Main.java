@@ -85,7 +85,7 @@ public class Main extends Application {
         File hamFolder = new File(mainDirectory.getPath()+"/test/ham");
         File[] testHamFiles = hamFolder.listFiles();
         Testing testMap = new Testing(testSpamFiles, testHamFiles, probSpam);
-        System.out.println("Training in Progress...");
+        System.out.println("Results Loading...");
 
         //Set up table for Interface
         table = new TableView<>();
@@ -111,16 +111,12 @@ public class Main extends Application {
         probColumn.setCellValueFactory(new PropertyValueFactory<>("probRounded"));
         probColumn.setCellFactory(TextFieldTableCell.<TestFile>forTableColumn());
 
-        TableColumn<TestFile,String> guessColumn = null;
-        guessColumn = new TableColumn<>("Guess Class");
-        guessColumn.setMinWidth(100);
-        guessColumn.setCellValueFactory(new PropertyValueFactory<>("guessClass"));
-        guessColumn.setCellFactory(TextFieldTableCell.<TestFile>forTableColumn());
+
 
         table.getColumns().add(fileColumn);
         table.getColumns().add(classColumn);
         table.getColumns().add(probColumn);
-        table.getColumns().add(guessColumn);
+        //table.getColumns().add(guessColumn);
 
         //Precision and Accuracy
         double correctGuesses = 0.0;

@@ -12,8 +12,6 @@ The purpose of this project is to detect spam or ham from a given set of data.
 It goes through a training and testing phase to detect words that indicate the
 state of a file as "spam" or "ham".
 
-Improvements:
-Also adds a guess class for detecting spam or ham.
 
 How to run:
 Run using IntelliJ. Make sure the appropriate Java and JavaFX
@@ -23,8 +21,6 @@ Please select the "Data" folder in the same repository for this step.
 When the program is done going through training phase, the results
 will appear in a different window.
 
-Other Resources:
-Previous examples by Randy F.
 
 
 Accuracy: 0.9131832797427653
