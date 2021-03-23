@@ -3,11 +3,15 @@ package midterm2021;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -37,6 +41,10 @@ public class Main extends Application {
 //                      Display the "Animation" in the CENTER,
 //                      and a "Back to Main" on the TOP
                  System.out.println("Clicked on Animation button");
+                NewWindow animationButton = new NewWindow();
+                animationButton.openWindow("Animation");
+                ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+
             }
         });
 
@@ -47,6 +55,9 @@ public class Main extends Application {
 //                    Display the "2D Drawing" in the CENTER,
 //                    and a "Back to Main" on the TOP
                 System.out.println("Clicked on Graphics 2D button");
+                NewWindow twoDButton = new NewWindow();
+                twoDButton.openWindow("2D");
+                ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
             }
         });
 
@@ -57,6 +68,9 @@ public class Main extends Application {
 //                    Display the "About" in the CENTER,
 //                    and a "Back to Main" on the TOP
                 System.out.println("Clicked on About button");
+                NewWindow aboutButton = new NewWindow();
+                aboutButton.openWindow("About");
+                ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
             }
         });
 
