@@ -42,15 +42,12 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         loadUI();
-        primaryStage.setTitle("File Transfer Server");
+        primaryStage.setTitle("File Share Service");
         primaryStage.setScene(new Scene(layout, 600, 600));
         primaryStage.show();
     }
 
-    /**
-     * Initiates upload of file to the server, socket is closed.
-     * @param fileName
-     */
+
     public static void giveUpload(String fileName){
         System.out.println("Giving File");
         try {
@@ -82,9 +79,7 @@ public class Client extends Application {
         }
     }
 
-    /**
-     * Initiates the download of a file from the server
-     */
+
     public static void getDownload(){
         System.out.println("Getting File");
         try {
@@ -119,10 +114,7 @@ public class Client extends Application {
         }
     }
 
-    /**
-     * Loads the User Interface, called from main to avoid a clustered main function
-     * all user interface coded programmatically.
-     */
+
     public void loadUI(){
         String clientPath = "C:/csci2020u/Assignment2/client/";
         String serverPath = "C:/csci2020u/Assignment2/shared/";
@@ -166,12 +158,10 @@ public class Client extends Application {
         }
 
         Button upButton = new Button("Upload");
-        upButton.setMinWidth(50);
+        upButton.setMinWidth(70);
         upButton.setMinHeight(50);
         upButton.setOnAction(action -> {
             try {
-                //Notify handler that the command selected is upload, forces handler to begin
-                //waiting for the filename and begins reading upload buffer
                 if (clientRequest[0] != null) {
                     output.println("UPLOAD");
                     output.flush();
@@ -187,13 +177,11 @@ public class Client extends Application {
         });
 
         Button downButton = new Button("Download");
-        downButton.setMinWidth(50);
+        downButton.setMinWidth(70);
         downButton.setMinHeight(50);
         downButton.setOnAction(action -> {
             try {
                 if (serverRequest[0] != null) {
-                    //Notify handler that the command selected is download, forces handler to begin
-                    //waiting for the filename to begin sending the file
                     output.println("DOWNLOAD");
                     output.flush();
                     output.println(serverRequest[0]);
@@ -224,15 +212,10 @@ public class Client extends Application {
         layout.setCenter(gridPane);
         layout.setBottom(flowPane);
 
-        //Return to main to be shown
+
     }
 
-    /**
-     * Used to generate an arraylist of the given folder's files, folders are not considered to be a file
-     * but recursively called inside of the folder until completely read.
-     * @param folder
-     * @return ArrayList<File> built array list of the folder's files.
-     */
+
     public ArrayList<File> getFiles(File folder) {
         ArrayList<File> files = new ArrayList<>();
         if(folder.exists()) {
@@ -242,8 +225,6 @@ public class Client extends Application {
                 } else {
                     String pFile = file.toString();
                     int breakPath;
-                    //This will break if you add a shared folder or client folder inside of itself.
-                    //will trigger my fail-safe of 39 characters in the directory before shared/client
                     if (pFile.contains("shared")){
                         breakPath = pFile.lastIndexOf("shared/");
                     }

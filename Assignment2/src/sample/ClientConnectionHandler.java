@@ -9,17 +9,13 @@ public class ClientConnectionHandler implements Runnable {
     private BufferedReader requestInput = null;
     public final String sharedPath = "C:/csci2020u/Assignment2/shared/";
 
-    /**
-     * Declares the client when a client connects, each client on seperate thread
-     * @param socket
-     */
+
     public ClientConnectionHandler(Socket socket) {
         this.socket = socket;
     }
 
-    /**
-     * Continuously waiting for client to send a request for information
-     */
+
+
     public void run() {
         try {
             requestInput = new BufferedReader(new InputStreamReader(
@@ -62,9 +58,7 @@ public class ClientConnectionHandler implements Runnable {
         }
     }
 
-    /**
-     * Initiates the download of a file from the client
-     */
+
     public void getUpload(){
         System.out.println("Getting File");
         try {
@@ -93,10 +87,8 @@ public class ClientConnectionHandler implements Runnable {
                 e.printStackTrace();
             }
     }
-    /**
-     * Initiates upload of file to the client, socket is closed.
-     * @param fileName
-     */
+
+
     public void giveDownload(String fileName){
         System.out.println("Giving File");
         try {

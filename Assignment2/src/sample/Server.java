@@ -9,19 +9,20 @@ public class Server {
     private static Socket clientSocket = null;
     public static int port = 1785;
 
-    /**
-     * General Constructor, launches the server.
-     * @throws IOException
-     */
+
     public Server() throws IOException {
         serverSocket = new ServerSocket(port);
         System.out.println("Server Started");
     }
+    public static void main(String[] args) {
+        try{
+            Server server = new Server();
+            server.handleRequests();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    /**
-     * Creates a new thread for any new clients which connect
-     * @throws IOException
-     */
     public void handleRequests() throws IOException {
         System.out.println("Server is listening on port: " + port);
         while (true) {
@@ -32,12 +33,5 @@ public class Server {
             handlerThread.start();
         }
     }
-    public static void main(String[] args) {
-        try{
-            Server server = new Server();
-            server.handleRequests();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
